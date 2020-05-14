@@ -10,10 +10,8 @@ option_9 = "9. Can permanently & subtly influence anyone you can see's opinion o
 
 choice = "-"
 
-while True:
-    if choice == "0":
-        break
-    elif choice in "123456789":
+while choice != "0":
+    if choice in "123456789":
         print("You chose {}".format(choice))
     else:
         print("Please Select an Option: \n"
@@ -32,6 +30,8 @@ while True:
                         option_9))
 
     choice = input("I wish for: ")
+
+
 
 # My initial solution:
 # while wish:
