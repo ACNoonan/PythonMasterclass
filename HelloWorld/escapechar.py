@@ -1,8 +1,8 @@
-splitString = "This string has been\nsplit over\nseveral\nlines"
-print(splitString)
+split_string = "This string has been\nsplit over\nseveral\nlines"
+print(split_string)
 
-tabbedString = "1 \t 2 \t 3 \t 4 \t 5"
-print(tabbedString)
+tabbed_string = "1 \t 2 \t 3 \t 4 \t 5"
+print(tabbed_string)
 
 print('The pet shop owner said "no, no, \'e\'s uh,...he\'s resting".')
 print("The pet shop owner said \"No, no, 'e's uh,...he's resting\".")
@@ -10,11 +10,11 @@ print("""The pet shop owner said "No, no, \
 'e's uh,...he's resting".""")
 
 
-anotherSplitString = """This string has been \
+another_split_string = """This string has been \
 split over \
 several \
 lines"""
-print(anotherSplitString)
+print(another_split_string)
 
 
 
