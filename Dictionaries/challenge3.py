@@ -40,10 +40,9 @@ vocabulary = {"QUIT": "Q",
 
 loc = 1
 while True:
-    available_exits = ', '.join(locations[loc]['exits'])
+    available_exits = ', '.join(locations[loc]['exits'].keys())
 
-
-    print(locations[loc])
+    print(locations[loc]['desc'])
 
     if loc == 0:
         break
@@ -51,7 +50,7 @@ while True:
         all_exits = locations[loc]['exits'].copy()
         all_exits.update(locations[loc]['namedExits'])
 
-    direction = input("Available exits are " + available_exits).upper()
+    direction = input("Available exits are " + available_exits + ' ').upper()
     print()
 
     # Parse the user input, using our vocabulary dictionary if necessary
