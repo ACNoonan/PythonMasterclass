@@ -1,3 +1,7 @@
+# Challenge: make exits a dictionary (w/ keys being the
+# numbers of the locations and values being dictionaries
+# holding the exits.
+
 locations = {0: 'You are at home learning Python.',
              1: 'You are standing at the end of the road before a small brick building',
              2: 'You are at the top of a hill',
@@ -11,13 +15,6 @@ exits = [{'Q': 0},
          {'W': 1, 'Q': 0},
          {'N': 1, 'W': 2, 'Q': 0},
          {'W': 2, 'S': 1, 'Q': 0}]
-
-print(exits[1])
-print('E' in exits[1])
-print(exits[1].keys())
-print(2 in exits[1].values())
-
-print('-' * 40)
 
 
 loc = 1
