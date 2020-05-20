@@ -2,7 +2,7 @@ fruit = {'orange': 'a sweet, orange, citrus fruit',
          'apple': 'good for making cider',
          'lemon': 'a sour, yellow, citrus fruit',
          'grape': 'a small, sweet fruit grown in bunches',
-         'lime': 'a sour, reen citrus fruit'}
+         'lime': 'a sour, green citrus fruit'}
 print(fruit)
 print(fruit['lemon'])
 
