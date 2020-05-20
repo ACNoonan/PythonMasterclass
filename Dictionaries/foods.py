@@ -8,8 +8,8 @@ veg = {'brussel sprouts': "every child's favorite",
        'broccoli': 'good with some cheese/soy sauce',
        'spinach': 'throw some salsa in there, quit complaining'}
 
-# print(fruit)
-# print(veg)
+# Note: .update() won't return any values, this won't work:
+# print(veg.update(fruit))
 
 veg.update(fruit)
 print(veg)
