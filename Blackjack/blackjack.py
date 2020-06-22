@@ -4,6 +4,7 @@ try:
 except ImportError:  # python 2
     import Tkinter as tkinter
 
+player_hit_count = 0
 
 def load_images(card_images):
     suits=['heart', 'club', 'diamond', 'spade']
@@ -29,8 +30,7 @@ def load_images(card_images):
             card_images.append((10, image,))
 
 
-# deal cards
-def deal_card(frame):
+def _deal_card(frame):
     # pop the next cards off the top of the deck
     next_card = deck.pop(0)
     # and add it to the back of the pack
@@ -42,7 +42,7 @@ def deal_card(frame):
 
 
 def score_hand(hand):
-    #Calculate the total score of all cards in the list
+    # Calculate the total score of all cards in the list
     # Only one ace can be 11, which changes to 1 if the hand goes bust
     score = 0
     ace = False
@@ -64,7 +64,7 @@ def deal_dealer():
     global player_record
     dealer_score = score_hand(dealer_hand)
     while 0 < dealer_score < 17:
-        dealer_hand.append(deal_card(dealer_card_frame))
+        dealer_hand.append(_deal_card(dealer_card_frame))
         dealer_score = score_hand(dealer_hand)
         dealer_score_label.set(dealer_score)
 
@@ -88,10 +88,10 @@ def deal_dealer():
 def deal_player():
     global player_record
     global dealer_record
-    player_hand.append(deal_card(player_card_frame))
+    global player_hit_count
+    player_hand.append(_deal_card(player_card_frame))
     player_score = score_hand(player_hand)
-    player_hit_count = 0
-    player_hit_count += 1
+    player_hit_count += 2
 
     player_score_label.set(player_score)
     if player_score == 21 and player_hit_count == 2:
@@ -103,22 +103,12 @@ def deal_player():
         dealer_record += 1
         dealer_record_label.set(dealer_record)
 
-    #
-    # global player_score
-    # global player_ace
-    # card_value = deal_card(player_card_frame)[0]
-    # if card_value == 1 and not player_ace:
-    #     player_ace = True
-    #     card_value = 11
-    # player_score += card_value
-    # # if bust, check for ace
-    # if player_score > 21 and player_ace:
-    #     player_score -= 10
-    #     player_ace = False
-    # player_score_label.set(player_score)
-    # if player_score > 21:
-    #     result_text.set('Dealer wins!')
-    # print(locals())
+
+def initial_deal():
+    deal_player()
+    dealer_hand.append(_deal_card(dealer_card_frame))
+    dealer_score_label.set(score_hand(dealer_hand))
+    deal_player()
 
 
 def new_game():
@@ -126,11 +116,12 @@ def new_game():
     global player_card_frame
     global dealer_hand
     global player_hand
+    global player_hit_count
 
     # Create a new deck of cards and shuffle 'em
     deck = list(cards)
     random.shuffle(deck)
-    #embedded frame to hold the card images
+    # embedded frame to hold the card images
     dealer_card_frame.destroy()
     dealer_card_frame = tkinter.Frame(card_frame, background='green')
     dealer_card_frame.grid(row=0, column=1, sticky='ew', rowspan=2)
@@ -143,10 +134,13 @@ def new_game():
     # Create the lists to store the dealer's & player's hands
     dealer_hand = []
     player_hand = []
-    deal_player()
-    dealer_hand.append(deal_card(dealer_card_frame))
-    dealer_score_label.set(score_hand(dealer_hand))
-    deal_player()
+
+    initial_deal()
+
+
+def play():
+    initial_deal()
+    mainWindow.mainloop()
 
 
 # Instantiate screen and frames for the dealer and player
@@ -195,6 +189,7 @@ player_button.grid(row=0, column=1)
 new_game_button = tkinter.Button(button_frame, text='New Game', command=new_game)
 new_game_button.grid(row=0, column=2)
 
+
 # load cards
 cards = []
 load_images(cards)
@@ -207,10 +202,11 @@ random.shuffle(deck)
 # Create the lists to store the dealer's & player's hands
 dealer_hand = []
 player_hand = []
-new_game()
 
 # Create win record
 dealer_record = 0
 player_record = 0
 
-mainWindow.mainloop()
+
+if __name__ == '__main__':
+    play()
