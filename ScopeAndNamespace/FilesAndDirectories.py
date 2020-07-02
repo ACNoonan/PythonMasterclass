@@ -20,7 +20,7 @@ def list_directories(s):
         print('Directory listing of ' + s)
         dir_list(s)
     else:
-        print( s + ' does not exist')
+        print(s + ' does not exist')
 
 
 # '.' calls the current folder
