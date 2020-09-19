@@ -2,7 +2,7 @@ import sqlite3
 
 db = sqlite3.connect("contacts.sqlite")
 
-new_email = "bitchass@cuntsinc.com"
+new_email = "appropriate_response.com"
 phone = input("Give us a number then, love: ")
 
 update_sql = "UPDATE contacts SET email = ? WHERE phone = ?"
